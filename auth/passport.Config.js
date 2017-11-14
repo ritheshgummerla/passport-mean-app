@@ -3,7 +3,6 @@ module.exports = function(){
     var passportLocal = require('passport-local');
     var bcrypt =require('bcrypt');  
     var userService = require('../services/user-Service');
-
     passport.use(new passportLocal.Strategy({usernameField: 'email'}, function(email, password, next){
         userService.findUser(email, function(err, user){
         if(err){
@@ -23,7 +22,7 @@ module.exports = function(){
             next(null, user); 
         })
         //next(null, user);
-        })
+        });
     }));
 
     passport.serializeUser(function(user, next){
